@@ -1,6 +1,7 @@
 const express = require("express");
 
 const db = require("./db");
+const Todo = require("./todo");
 
 const app = express();
 
@@ -15,12 +16,23 @@ app.listen(3000, () => {
 });
 
 app.get("/f5rcbh", (req, res) => {
-  res.json("get is done");
-  console.log("get done");
+  Todo.find({}, (err, data) => {
+    if (err) {
+      console.log("get error", err);
+    } else {
+      res.json(data);
+    }
+    console.log("get done");
+  });
 });
 
 app.post("/post", (req, res) => {
-  req.body;
-  res.json("post is done");
-  console.log("post is done");
+  Todo.create(req.body, (err, data) => {
+    if (err) {
+      console.log("psot error", err);
+    } else {
+      res.json(data);
+      console.log("post done", data);
+    }
+  });
 });
