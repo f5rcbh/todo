@@ -36,3 +36,14 @@ app.post("/post", (req, res) => {
     }
   });
 });
+
+app.delete("/D", (req, res) => {
+  Todo.deleteMany({}, (err, data) => {
+    if (err) {
+      console.log("delete error ", err);
+    } else {
+      res.json("delete one elm", data);
+      console.log("delete one elm", data);
+    }
+  });
+});
