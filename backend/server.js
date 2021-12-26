@@ -1,19 +1,19 @@
 const express = require("express");
-
+const CORS = require("cors");
 const db = require("./db");
 const Todo = require("./todo");
-
 const app = express();
+const User = require("./user");
 
-const todo = require("./todo");
+// check model
+console.log(Todo);
+console.log(User);
 
-console.log(todo);
+app.use(CORS());
 
 app.use(express.json());
 
-app.listen(3000, () => {
-  console.log("server is working");
-});
+// TO-DO-LIST
 
 app.get("/f5rcbh", (req, res) => {
   Todo.find({}, (err, data) => {
@@ -67,7 +67,7 @@ app.delete("/f5rcbh/:id", (req, res) => {
 });
 
 app.delete("/f5rcbh", (req, res) => {
-  Todo.deleteMany({ isCompleted: true }, (err, deleteData) => {
+  Todo.deleteMany({}, (err, deleteData) => {
     if (err) {
       console.log("delete error ", err);
     } else {
@@ -80,7 +80,6 @@ app.delete("/f5rcbh", (req, res) => {
     }
   });
 });
-
 app.put("/f5rcbh/:id", (req, res) => {
   Todo.updateOne(
     { _id: req.params.id },
@@ -122,4 +121,37 @@ app.put("/f5rcbh/:id/:isCompleted", (req, res) => {
       }
     }
   );
+});
+
+// Users
+
+app.post("/user/Register", (req, res) => {
+  User.create(req.body, (err, userData) => {
+    if (err) {
+      console.log("Error user ", err);
+      res.status(400).json("Error user ", err);
+    } else {
+      console.log("create new user", userData);
+      res.status(200).json("create new user");
+    }
+  });
+});
+
+app.delete("/user/del", (req, res) => {
+  User.deleteMany({}, (err, deleteUser) => {
+    if (err) {
+      console.log("delete error ", err);
+    } else {
+      if (deleteUser.deletedCount === 0) {
+        res.status(404).json("delete NOT FOUND");
+      } else {
+        res.json("delete all elm");
+        console.log("delete all elm", deleteUser);
+      }
+    }
+  });
+});
+
+app.listen(5000, () => {
+  console.log("server is working");
 });
