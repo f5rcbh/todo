@@ -152,6 +152,30 @@ app.delete("/user/del", (req, res) => {
   });
 });
 
+// Login
+
+app.get("/user/login", (req, res) => {
+  User.find(
+    {
+      userName: req.body.userName,
+    },
+    (err, loginData) => {
+      if (err) {
+        console.log("Login Error", err);
+        res.status(404).json("Login Error", err);
+      } else {
+        if (loginData.userName === loginData) {
+          console.log("welcome", loginData);
+          res.status(200).json("welcome");
+        } else {
+          console.log("not found");
+          res.status(200).json("not found");
+        }
+      }
+    }
+  );
+});
+
 app.listen(5000, () => {
   console.log("server is working");
 });
