@@ -154,26 +154,26 @@ app.delete("/user/del", (req, res) => {
 
 // Login
 
-app.get("/user/login", (req, res) => {
-  User.find(
-    {
-      userName: req.body.userName,
-    },
-    (err, loginData) => {
-      if (err) {
-        console.log("Login Error", err);
-        res.status(404).json("Login Error", err);
-      } else {
-        if (loginData.userName === loginData) {
-          console.log("welcome", loginData);
+app.post("/user/login", (req, res) => {
+  User.find({ email: req.body.email }, (err, loginData) => {
+    if (err) {
+      console.log("Login Error", err);
+      res.status(404).json("Login Error", err);
+    } else {
+      if (loginData.length === 1) {
+        if (req.body.password === loginData[0].password) {
+          console.log("welcome");
           res.status(200).json("welcome");
         } else {
-          console.log("not found");
-          res.status(200).json("not found");
+          console.log("wrong password");
+          res.status(200).json("wrong password");
         }
+      } else {
+        console.log("user not register");
+        res.status(200).json("user not register");
       }
     }
-  );
+  });
 });
 
 app.listen(5000, () => {
