@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login(props) {
   const [email, setEmail] = useState("");
@@ -16,11 +17,14 @@ export default function Login(props) {
       .post("http://localhost:5000/user/login", userBody)
       .then((res) => {
         console.log(res.data);
+        props.setIsLogged(true);
+        props.setUserName(res.data);
       })
       .catch((err) => {
         console.log("error", err);
       });
   };
+
   return (
     <div className="login">
       <form>
@@ -42,6 +46,17 @@ export default function Login(props) {
         <br />
         <button onClick={getInfo}>submit</button>
       </form>
+      <button
+        onClick={() => {
+          return console.log(`2p2 ${props.setIsLogged(false)}`);
+        }}
+      >
+        Log Out
+      </button>
+      <p>Dont Have An Account?</p>
+      <Link to="/Register">
+        <button>Register</button>
+      </Link>
     </div>
   );
 }

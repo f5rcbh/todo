@@ -163,7 +163,7 @@ app.post("/user/login", (req, res) => {
       if (loginData.length === 1) {
         if (req.body.password === loginData[0].password) {
           console.log("welcome");
-          res.status(200).json("welcome");
+          res.status(200).json(`welcome ${loginData[0].userName}`);
         } else {
           console.log("wrong password");
           res.status(200).json("wrong password");

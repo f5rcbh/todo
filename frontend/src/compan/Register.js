@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Register(props) {
   const [email, setEmail] = useState("");
@@ -53,6 +54,10 @@ export default function Register(props) {
         <br />
         <button onClick={postInfo}>submit</button>
       </form>
+      <p>i have An Account</p>
+      <Link to="/Login">
+        <button>Login</button>{" "}
+      </Link>
     </div>
   );
 }
