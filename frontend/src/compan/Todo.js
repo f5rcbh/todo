@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function Todo(props) {
+  //for to-do-list componant
   const [task, setTask] = useState([]);
+
   const getData = () => {
     axios
       .get("http://localhost:5000/f5rcbh")
@@ -16,8 +18,15 @@ export default function Todo(props) {
       });
   };
   const mapOver = task.map((taskObj) => {
-    return <p>{taskObj.title}</p>;
+    return (
+      <div>
+        <p>Id: {taskObj._id}</p>
+        <p>Title: {taskObj.title}</p>
+        ---------------------
+      </div>
+    );
   });
+
   return (
     <div className="todo">
       {mapOver}

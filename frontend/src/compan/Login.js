@@ -48,7 +48,8 @@ export default function Login(props) {
       </form>
       <button
         onClick={() => {
-          return console.log(`2p2 ${props.setIsLogged(false)}`);
+          props.setIsLogged(false);
+          props.setUserName("");
         }}
       >
         Log Out
