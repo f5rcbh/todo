@@ -73,6 +73,7 @@ app.delete("/f5rcbh", (req, res) => {
     } else {
       if (deleteData.deletedCount === 0) {
         res.status(404).json("delete NOT FOUND");
+        console.log("delete not found");
       } else {
         res.json("delete all elm");
         console.log("delete all elm", deleteData);
