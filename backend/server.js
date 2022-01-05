@@ -138,7 +138,7 @@ app.post("/user/Register", (req, res) => {
   });
 });
 
-app.delete("/user/del", (req, res) => {
+app.delete("/user", (req, res) => {
   User.deleteMany({}, (err, deleteUser) => {
     if (err) {
       console.log("delete error ", err);

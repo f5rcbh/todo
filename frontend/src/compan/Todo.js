@@ -44,9 +44,14 @@ export default function Todo(props) {
   const mapOver = task.map((taskObj) => {
     return (
       <div className="todo-map">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          onClick={() => {
+            console.log("wow");
+          }}
+        />
 
-        {taskObj.title}
+        <span>{taskObj.title}</span>
 
         <button>delete</button>
       </div>

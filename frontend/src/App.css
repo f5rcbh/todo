@@ -3,24 +3,30 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
 .App {
   border: solid;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100vh;
 }
 
-.App li {
-  padding: 0 5px;
+.App nav button {
+  margin: 5px;
   display: inline-block;
   list-style: none;
+}
+
+.todo,
+.login,
+.register {
+  border: solid;
+  padding: 10px;
+  display: grid;
+}
+.todo button,
+.todo span {
+  padding: 0 10px;
+  width: 30%;
 }

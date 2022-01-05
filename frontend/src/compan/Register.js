@@ -3,56 +3,37 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
-
-  const postInfo = (e) => {
-    e.preventDefault();
-    console.log("ss");
-    const userBody = {
-      email,
-      password,
-      userName,
-    };
-
-    axios
-      .post("http://localhost:5000/user/Register", userBody)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
-  };
   return (
     <div className="register">
       <form>
         <input
           type="email"
+          placeholder="enter your e-mail"
           onChange={(e) => {
-            setEmail(e.target.value);
+            props.setEmail(e.target.value);
           }}
-          value={email}
+          value={props.email}
         />
         <br />
         <input
+          placeholder="enter your password"
           type="password"
           onChange={(e) => {
-            setPassword(e.target.value);
+            props.setPassword(e.target.value);
           }}
-          value={password}
+          value={props.password}
         />
         <br />
         <input
+          placeholder="enter your user name"
           type="text"
           onChange={(e) => {
-            setUserName(e.target.value);
+            props.setUserNameInfo(e.target.value);
           }}
-          value={userName}
+          value={props.userNameInfo}
         />
         <br />
-        <button onClick={postInfo}>submit</button>
+        <button onClick={props.postInfo}>submit</button>
       </form>
       <p>i have An Account</p>
       <Link to="/Login">
